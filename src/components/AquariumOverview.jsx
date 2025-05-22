@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+import AddNewFishForm from './addNewFishForm';
 
-export default function AquariumOverview(){
+export default function AquariumOverview() {
     const [aquarium, setAquarium] = useState({
         name: "",
         size: "",
@@ -63,9 +64,10 @@ export default function AquariumOverview(){
         }
     }
 
-    return(
+    return (
         <>
             <h2>Aquarium Overview</h2>
+            <AddNewFishForm onAddFish={addNewFish} />
         </>
     )
 }
