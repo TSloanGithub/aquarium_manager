@@ -1,0 +1,84 @@
+.fish-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.form-title {
+    color: #006699;
+    margin: 0 0 1rem 0;
+    text-align: center;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-input, .form-select {
+    padding: 0.75rem;
+    border: 1px solid #e1f5fe;
+    border-radius: 5px;
+    background: white;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-input:focus, .form-select:focus {
+    outline: none;
+    border-color: #006699;
+    box-shadow: 0 0 0 2px rgba(0, 102, 153, 0.1);
+}
+
+.form-input::placeholder {
+    color: #888;
+}
+
+.form-select {
+    padding: 0.75rem 2.5rem 0.75rem 0.75rem;
+    background: white url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23006699' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") no-repeat right 0.75rem center;
+    background-size: 1rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+.submit-button, .cancel-button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submit-button {
+    background: #006699;
+    color: white;
+}
+
+.cancel-button {
+    background: #e1f5fe;
+    color: #006699;
+}
+
+.submit-button:hover {
+    background: #004d66;
+}
+
+.cancel-button:hover {
+    background: #cdefff;
+}
+
+label {
+    color: #004d66;
+    font-weight: 600;
+}
