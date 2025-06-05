@@ -19,9 +19,17 @@ const AquariumOverview = () => {
     const [aquarium, setAquarium] = useState({
         name: "",
         size: "",
-        temperature: "",
+        waterType: "",
         fish: [],
-        coral: []
+        corals: [],
+        parameters: {
+            temperature: "",
+            salinity: "",
+            ph: "",
+            ammonia: "",
+            nitrite: "",
+            nitrate: ""
+        }
     });
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -29,7 +37,7 @@ const AquariumOverview = () => {
         const initializeAquarium = {
             name: "Aquarium 1",
             size: "1000 gallons",
-            temperature: "72 degrees",
+            waterType: "Freshwater",
             fish: [
                 {
                     name: "Fish 1",
@@ -44,48 +52,68 @@ const AquariumOverview = () => {
                     color: "Blue",
                 },
             ],
-            coral: [
+            corals: [
                 {
                     name: "Zoa",
                     color: "Red",
                     parRange: "20-30",
                 },
             ],
+            parameters: {
+                temperature: "72 degrees",
+                salinity: "",
+                ph: "",
+                ammonia: "",
+                nitrite: "",
+                nitrate: ""
+            }
         };
         setAquarium(initializeAquarium);
     }, []);
 
-    const addNewFish = async (newFish) => {
-        try {
-            const updatedAquarium = {
-                ...aquarium,
-                fish: [...aquarium.fish, newFish]
-            };
-            setAquarium(updatedAquarium);
-        } catch (error) {
-            console.error('Error adding fish:', error);
-        }
-    }
-
     return (
         <div className="aquarium-container">
-            <div className="aquarium-header">
-                <h2 className="aquarium-title">Aquarium Overview</h2>
-                <div className="aquarium-info">
-                    <div className="info-item">
-                        <span className="info-label">Name:</span>
-                        <span className="info-value">{aquarium.name}</span>
-                    </div>
-                    <div className="info-item">
-                        <span className="info-label">Size:</span>
-                        <span className="info-value">{aquarium.size}</span>
-                    </div>
-                    <div className="info-item">
-                        <span className="info-label">Temperature:</span>
-                        <span className="info-value">{aquarium.temperature}</span>
+            <div className="main-header">
+                <h1 className="main-title">Aquarium Overview</h1>
+            </div>
+            <div className="aquarium-content">
+                <div className="aquarium-header">
+                    <h2 className="aquarium-title">Aquarium Details</h2>
+                    <div className="aquarium-info">
+                        <div className="info-item">
+                            <span className="info-label">Name:</span>
+                            <span className="info-value">{aquarium.name}</span>
+                        </div>
+                        <div className="info-item">
+                            <span className="info-label">Size:</span>
+                            <span className="info-value">{aquarium.size}</span>
+                        </div>
+                        <div className="info-item">
+                            <span className="info-label">Temperature:</span>
+                            <span className="info-value">{aquarium.parameters.temperature}</span>
+                        </div>
+                        <div className="info-item">
+                            <span className="info-label">Salinity:</span>
+                            <span className="info-value">{aquarium.parameters.salinity}</span>
+                        </div>
+                        <div className="info-item">
+                            <span className="info-label">pH:</span>
+                            <span className="info-value">{aquarium.parameters.ph}</span>
+                        </div>
+                        <div className="info-item">
+                            <span className="info-label">Ammonia:</span>
+                            <span className="info-value">{aquarium.parameters.ammonia}</span>
+                        </div>
+                        <div className="info-item">
+                            <span className="info-label">Nitrite:</span>
+                            <span className="info-value">{aquarium.parameters.nitrite}</span>
+                        </div>
+                        <div className="info-item">
+                            <span className="info-label">Nitrate:</span>
+                            <span className="info-value">{aquarium.parameters.nitrate}</span>   
+                        </div>
                     </div>
                 </div>
-            </div>
             
             {aquarium.fish && aquarium.fish.length > 0 && (
                 <div className="fish-section">
@@ -115,11 +143,11 @@ const AquariumOverview = () => {
                 </div>
             )}
 
-            {aquarium.coral && aquarium.coral.length > 0 && (
+            {aquarium.corals && aquarium.corals.length > 0 && (
                 <div className="coral-section">
                     <h3>Coral Collection</h3>
                     <div className="coral-grid">
-                        {aquarium.coral.map((coral, index) => (
+                        {aquarium.corals.map((coral, index) => (
                             <div key={index} className="coral-card">
                                 <div className="coral-info">
                                     <span className="coral-label">Name:</span>
@@ -144,11 +172,22 @@ const AquariumOverview = () => {
             </button>
             <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
                 <AddNewFishForm 
-                    onAddFish={addNewFish}
+                    onAddFish={(newFish) => {
+                        try {
+                            const updatedAquarium = {
+                                ...aquarium,
+                                fish: [...aquarium.fish, newFish]
+                            };
+                            setAquarium(updatedAquarium);
+                        } catch (error) {
+                            console.error('Error adding fish:', error);
+                        }
+                    }}
                     onClose={() => setIsModalOpen(false)}
                 />
             </Modal>
         </div>
+    </div>
     );
 };
 

@@ -1,0 +1,26 @@
+.navbar-container {
+  display: flex;
+  justify-content: space-around; /* Or flex-start, center, etc. based on preference */
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #f8f9fa; /* A light grey, can be changed */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow */
+}
+
+.navbar-container a {
+  text-decoration: none;
+  color: #007bff; /* A standard blue, can be changed */
+  padding: 8px 15px;
+  border-radius: 4px; /* Optional: slightly rounded corners for links */
+  transition: background-color 0.3s ease;
+}
+
+.navbar-container a:hover {
+  background-color: #e9ecef; /* Light background on hover */
+  color: #0056b3; /* Darker blue on hover */
+}
+
+.navbar-container a.active { /* If you use NavLink and want to style active links */
+  font-weight: bold;
+  color: #0056b3;
+}

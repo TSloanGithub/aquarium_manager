@@ -4,12 +4,14 @@ import './AddNewFishForm.css';
 
 export default function AddNewFishForm({ onAddFish, onClose }) {
     const [formData, setFormData] = useState({
-        name:"",
-        species:"",
-        size:"",
-        color:"",
+        name: "",
+        species: "",
+        size: "",
+        color: "",
         reefSafe: null
     });
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if (formData.reefSafe === null) {
@@ -17,6 +19,9 @@ export default function AddNewFishForm({ onAddFish, onClose }) {
             return;
         }
         
+        // Call the parent's callback function
+        onAddFish(formData);
+
         // Clear the form after successful submission
         setFormData({
             name: "",
@@ -26,9 +31,9 @@ export default function AddNewFishForm({ onAddFish, onClose }) {
             reefSafe: "Select Reef Safe"
         });
 
-        // Call the parent's callback function
-        if (onAddFish) {
-            onAddFish(formData);
+        // Close the modal
+        if (onClose) {
+            onClose();
         }
     }
 
