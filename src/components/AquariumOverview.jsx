@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AddNewFishForm from './addNewFishForm';
 import './AquariumOverview.css';
+import FishOverview from './FishOverview';
 
 const Modal = ({ isOpen, onClose, children }) => {
     if (!isOpen) return null;
@@ -116,31 +117,7 @@ const AquariumOverview = () => {
                 </div>
             
             {aquarium.fish && aquarium.fish.length > 0 && (
-                <div className="fish-section">
-                    <h3>Fish Collection</h3>
-                    <div className="fish-grid">
-                        {aquarium.fish.map((fish, index) => (
-                            <div key={index} className="fish-card">
-                                <div className="fish-info">
-                                    <span className="fish-label">Name:</span>
-                                    <span className="fish-value">{fish.name}</span>
-                                </div>
-                                <div className="fish-info">
-                                    <span className="fish-label">Species:</span>
-                                    <span className="fish-value">{fish.species}</span>
-                                </div>
-                                <div className="fish-info">
-                                    <span className="fish-label">Size:</span>
-                                    <span className="fish-value">{fish.size}</span>
-                                </div>
-                                <div className="fish-info">
-                                    <span className="fish-label">Color:</span>
-                                    <span className="fish-value" style={{ color: fish.color }}>{fish.color}</span>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
+                <FishOverview fish={aquarium.fish} />
             )}
 
             {aquarium.corals && aquarium.corals.length > 0 && (
